@@ -77,3 +77,34 @@ body {
     font-size: 26px;
     font-weight: bold;
 }
+
+form {
+    margin-top : 60px ;
+    width: 100% ; 
+    display: flex;
+    gap : 10px ; 
+}
+
+input { 
+    flex : 1 ; 
+    padding:16px ; 
+    background : var(--secondaryBackground) ;
+    border : 1px solid var(--purple) ;
+    border-radius : 10px;
+    gap : 10px ; 
+    color : var(--text); 
+}
+
+button{
+    width : 50px ;
+    height : 50px ; 
+    border-radius: 50%;
+    display : flex ; 
+    align-items : center ;
+    justify-content: center ;
+    background-color: var(--purple);
+    color: var(--text);
+    font-weight : bold ; 
+    font-size : 30px ; 
+    outline : none ; 
+}
