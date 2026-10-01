@@ -133,8 +133,9 @@ button{
     gap : 10px ; 
 }
 
-.task.completed{
+.completed p{
     text-decoration: line-through;
+    color: var(--teal);
     opacity: 0.5;
 }
 
@@ -143,5 +144,5 @@ button{
     height: 20px;
     margin : 0 10px ;
     cursor: pointer;
-    
+
 }

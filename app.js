@@ -12,6 +12,11 @@ const addTask = () => {
     console.log(tasks)
 }
 
+const toggleTaskComplete = (index)=>{
+    tasks[index].completed = !tasks[index].completed;
+}
+
+
 const updateTaskList =()=>{
     const taskList = document.getElementById("task-list");
     taskList.innerHTML = "" ;
@@ -37,8 +42,6 @@ const updateTaskList =()=>{
         taskList.append(listItem)
     })
 }
-
-
 
 document.getElementById("newTask").addEventListener("click",function(e){
     e.preventDefault()
