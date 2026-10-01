@@ -12,6 +12,22 @@ const addTask = () => {
     console.log(tasks)
 }
 
+const toggleTaskComplete = (index)=>{
+    tasks[index].completed = !tasks[index].completed;
+}
+
+const deleteTask = (index)=>{
+    tasks.splice(index , 1)
+    updateTaskList()
+}
+
+const editTask = (index)=>{
+    const taskInput = document.getElementById('taskInput')
+    taskInput.value = tasks[index].text
+    tasks.splice(index , 1)
+    updateTaskList()
+}
+
 const updateTaskList =()=>{
     const taskList = document.getElementById("task-list");
     taskList.innerHTML = "" ;
@@ -37,8 +53,6 @@ const updateTaskList =()=>{
         taskList.append(listItem)
     })
 }
-
-
 
 document.getElementById("newTask").addEventListener("click",function(e){
     e.preventDefault()
