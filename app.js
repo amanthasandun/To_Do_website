@@ -8,6 +8,7 @@ const addTask = () => {
         tasks.push({text:text , completed : false})
         taskInput.value = "" ;
         updateTaskList()
+        updateStats()
     }
     console.log(tasks)
 }
@@ -39,6 +40,8 @@ const updateStats = ()=>{
 
     const progressBar = document.getElementById("progress")
     progressBar.style.width =`${prograss}%`
+
+    document.getElementById("numbers").innerText = `${completedTasks}/${totalTasks}`
 
 }
 
