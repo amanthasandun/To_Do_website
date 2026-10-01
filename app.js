@@ -1,5 +1,18 @@
 let tasks = [] ;
 
+document.addEventListener("DOMContentLoaded",()=>{
+    const storedTasks = JSON.parse(localStorage.getItem("tasks"))
+    if(storedTasks){
+        storedTasks.forEach((task => tasks.push(task)))
+        updateTaskList()
+        updateStats()
+    }
+})
+
+const saveTasks = ()=>{
+    localStorage.setItem('tasks',JSON.stringify(tasks))
+}
+
 const addTask = () => {
     const taskInput = document.getElementById("taskInput")
     const text = taskInput.value.trim();
@@ -8,17 +21,23 @@ const addTask = () => {
         tasks.push({text:text , completed : false})
         taskInput.value = "" ;
         updateTaskList()
+        updateStats()
+        saveTasks()
     }
     console.log(tasks)
 }
 
 const toggleTaskComplete = (index)=>{
     tasks[index].completed = !tasks[index].completed;
+    updateStats()
+    saveTasks()
 }
 
 const deleteTask = (index)=>{
     tasks.splice(index , 1)
     updateTaskList()
+    updateStats()
+    saveTasks()
 }
 
 const editTask = (index)=>{
@@ -26,6 +45,24 @@ const editTask = (index)=>{
     taskInput.value = tasks[index].text
     tasks.splice(index , 1)
     updateTaskList()
+    updateStats()
+    saveTasks()
+}
+
+
+const updateStats = ()=>{
+    const completedTasks = tasks.filter(task=>task.completed).length
+    const totalTasks = tasks.length
+    const prograss = (completedTasks/totalTasks)*100
+
+    const progressBar = document.getElementById("progress")
+    progressBar.style.width =`${prograss}%`
+
+    document.getElementById("numbers").innerText = `${completedTasks}/${totalTasks}`
+
+    if(tasks.length && completedTasks === totalTasks){
+        confetti();
+    }
 }
 
 const updateTaskList =()=>{
@@ -38,7 +75,7 @@ const updateTaskList =()=>{
         listItem.innerHTML = `
             <div class = "taskItem">
                 <div class = "task ${task.completed ? "completed" : ""}" >
-                    <input type="checkbox" class = "checkbox" ${task.completed ? checked : ""} >
+                    <input type="checkbox" class = "checkbox" ${task.completed ? "checked" : ""} >
                     <p>${task.text}</p>
                 </div>
                 <div class="icons">
