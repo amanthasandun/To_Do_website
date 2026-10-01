@@ -14,11 +14,13 @@ const addTask = () => {
 
 const toggleTaskComplete = (index)=>{
     tasks[index].completed = !tasks[index].completed;
+    updateStats()
 }
 
 const deleteTask = (index)=>{
     tasks.splice(index , 1)
     updateTaskList()
+    updateStats()
 }
 
 const editTask = (index)=>{
@@ -26,6 +28,18 @@ const editTask = (index)=>{
     taskInput.value = tasks[index].text
     tasks.splice(index , 1)
     updateTaskList()
+    updateStats()
+}
+
+
+const updateStats = ()=>{
+    const completedTasks = tasks.filter(task=>task.completed).length
+    const totalTasks = tasks.length
+    const prograss = (completedTasks/totalTasks)*100
+
+    const progressBar = document.getElementById("progress")
+    progressBar.style.width =`${prograss}%`
+
 }
 
 const updateTaskList =()=>{
