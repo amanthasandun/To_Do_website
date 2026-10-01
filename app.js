@@ -60,6 +60,9 @@ const updateStats = ()=>{
 
     document.getElementById("numbers").innerText = `${completedTasks}/${totalTasks}`
 
+    if(tasks.length && completedTasks === totalTasks){
+        confetti();
+    }
 }
 
 const updateTaskList =()=>{
@@ -72,7 +75,7 @@ const updateTaskList =()=>{
         listItem.innerHTML = `
             <div class = "taskItem">
                 <div class = "task ${task.completed ? "completed" : ""}" >
-                    <input type="checkbox" class = "checkbox" ${task.completed ? checked : ""} >
+                    <input type="checkbox" class = "checkbox" ${task.completed ? "checked" : ""} >
                     <p>${task.text}</p>
                 </div>
                 <div class="icons">
