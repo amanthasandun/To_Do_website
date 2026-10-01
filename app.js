@@ -13,7 +13,7 @@ const addTask = () => {
 }
 
 const updateTaskList =()=>{
-    const taskList = document.getElementById("tast-list");
+    const taskList = document.getElementById("task-list");
     taskList.innerHTML = "" ;
 
     tasks.forEach((task,index) => {
