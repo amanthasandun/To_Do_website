@@ -1,4 +1,10 @@
+
+
 let tasks = [] ;
+
+const saveTasks = ()=>{
+    localStorage.setItem('tasks',JSON.stringify(tasks))
+}
 
 const addTask = () => {
     const taskInput = document.getElementById("taskInput")
@@ -9,6 +15,7 @@ const addTask = () => {
         taskInput.value = "" ;
         updateTaskList()
         updateStats()
+        saveTasks()
     }
     console.log(tasks)
 }
@@ -16,12 +23,14 @@ const addTask = () => {
 const toggleTaskComplete = (index)=>{
     tasks[index].completed = !tasks[index].completed;
     updateStats()
+    saveTasks()
 }
 
 const deleteTask = (index)=>{
     tasks.splice(index , 1)
     updateTaskList()
     updateStats()
+    saveTasks()
 }
 
 const editTask = (index)=>{
@@ -30,6 +39,7 @@ const editTask = (index)=>{
     tasks.splice(index , 1)
     updateTaskList()
     updateStats()
+    saveTasks()
 }
 
 
